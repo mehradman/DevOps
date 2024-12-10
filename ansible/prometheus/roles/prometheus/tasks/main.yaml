@@ -1,0 +1,88 @@
+---
+- name: create temporary directory
+  file:
+    path: /tmp/prometheus
+    state: directory
+
+- name: download prometheus install package
+  get_url:
+    url: https://github.com/prometheus/prometheus/releases/download/v2.22.0/prometheus-2.22.0.linux-amd64.tar.gz
+    dest: /tmp/prometheus/prometheus-2.22.0.linux-amd64.tar.gz
+    checksum: sha256:b9894d2bf7fae235c924c7dadda0fbc214ffc18a2bb3e9306f6fbecb589d5263
+
+- name: extract compressed prometheus file
+  unarchive:
+    src: /tmp/prometheus/prometheus-2.22.0.linux-amd64.tar.gz
+    remote_src: yes
+    dest: /tmp/prometheus
+
+- name: add prometheus group
+  group:
+    name: prometheus
+    system: yes
+    state: present
+
+- name: add prometheus user
+  user:
+    name: prometheus
+    group: prometheus
+    system: yes
+    comment: Prometheus
+    shell: /usr/bin/false
+    state: present
+    create_home: no
+
+- name: create necessary directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+  with_items:
+    - /var/lib/prometheus
+    - /etc/prometheus
+
+- name: move binary files to right places
+  copy:
+    src: "/tmp/prometheus/prometheus-2.22.0.linux-amd64/{{ item }}"
+    remote_src: yes
+    dest: "/usr/local/bin/{{ item }}"
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+  with_items:
+    - prometheus
+    - promtool
+
+- name: move config files to right places
+  copy:
+    src: "/tmp/prometheus/prometheus-2.22.0.linux-amd64/{{ item }}"
+    remote_src: yes
+    dest: "/etc/prometheus/"
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+  with_items:
+    - consoles
+    - console_libraries
+    - prometheus.yml
+
+- name: remove leftovers
+  file:
+    path: /tmp/prometheus
+    state: absent
+
+- name: configure systemd unit
+  template:
+    src: prometheus.service.j2
+    dest: /lib/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: restart prometheus service
+  systemd:
+    name: prometheus
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
