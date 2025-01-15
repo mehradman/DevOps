@@ -1,0 +1,9 @@
+- TOTAL COUNT : 5
+- FAILED : 1
+- SUCCESS : 4
+- USER ACTIONS :
+   2024-10-30T09:00:01Z,12345,login,success
+   2024-10-30T09:05:32Z,12345,view_page,success
+   2024-10-30T09:15:30Z,12345,logout,success
+   2024-10-30T09:22:11Z,12345,upload_file,success
+   2024-10-30T09:35:15Z,12345,view_page,failed
