@@ -1,0 +1,12 @@
+Enter the User ID to analyze his/her actions:
+SUMMARY OF ACTIONS OF USER 67890
+==================================
+- TOTAL COUNT : 5
+- FAILED : 2
+- SUCCESS : 3
+- USER ACTIONS :
+   2024-10-30 09:10:45,67890,login,failed
+   2024-10-30 09:12:15,67890,view_page,success
+   2024-10-30 09:20:01,67890,logout,failed
+   2024-10-30 09:30:00,67890,upload_file,success
+   2024-10-30 09:40:10,67890,delete_file,success
