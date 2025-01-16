@@ -17,19 +17,15 @@ SUCCESS : 80
 
 metrics.prom format:
 ```bash
-# TYPE user_123_total_count counter
-user_123_total_count 100
-
-# TYPE user_123_failed_count counter
-user_123_failed_count 20
-
-# TYPE user_123_success_count counter
-user_123_success_count 80
-
-# TYPE user_123_action counter
+# TYPE user_actions_total counter
 user_123_action{timestamp="2025-01-15 12:34:56",user_id="user123",action="login",status="success"} 1
 user_123_action{timestamp="2025-01-15 12:35:01",user_id="user123",action="logout",status="failed"} 1
 ...
+
+# TYPE user_actions_summary gauge
+user_actions_summary{user=user123,status=total} 100
+user_actions_summary{user=user123,status=failed} 20
+user_actions_summary{user=user123,status=success} 80
 ```
 
 ## More Information

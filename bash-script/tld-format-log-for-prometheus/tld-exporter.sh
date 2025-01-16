@@ -32,17 +32,12 @@ done < "$INPUT_FILE"
 
 # Write to the output file
 {
-  echo "# TYPE user_${user_id}_total_count counter"
-  echo "user_${user_id}_total_count $total_count"
-  echo ""
-  echo "# TYPE user_${user_id}_failed_count counter"
-  echo "user_${user_id}_failed_count $failed_count"
-  echo ""
-  echo "# TYPE user_${user_id}_success_count counter"
-  echo "user_${user_id}_success_count $success_count"
-  echo ""
-  echo "# TYPE user_${user_id}_action counter"
+  echo "# TYPE user_actions_total counter"
   echo -e "$actions"
+  echo "# TYPE user_actions_summary gauge"
+  echo "user_actions_summary{user="${user_id}",status="total"} $total_count"
+  echo "user_actions_summary{user="${user_id}",status="failed"} $failed_count"
+  echo "user_actions_summary{user="${user_id}",status="success"} $success_count"
 } > "$OUTPUT_FILE"
 
 echo "Metrics written to $OUTPUT_FILE"

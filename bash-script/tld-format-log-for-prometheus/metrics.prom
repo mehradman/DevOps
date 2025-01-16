@@ -1,16 +1,12 @@
-# TYPE user_67890_total_count counter
-user_67890_total_count 5
-
-# TYPE user_67890_failed_count counter
-user_67890_failed_count 2
-
-# TYPE user_67890_success_count counter
-user_67890_success_count 3
-
-# TYPE user_67890_action counter
+# TYPE user_actions_total counter
 user_67890_action{timestamp="2024-10-30 09:10:45",user_id="67890",action="login",status="failed"} 1
 user_67890_action{timestamp="2024-10-30 09:12:15",user_id="67890",action="view_page",status="success"} 1
 user_67890_action{timestamp="2024-10-30 09:20:01",user_id="67890",action="logout",status="failed"} 1
 user_67890_action{timestamp="2024-10-30 09:30:00",user_id="67890",action="upload_file",status="success"} 1
 user_67890_action{timestamp="2024-10-30 09:40:10",user_id="67890",action="delete_file",status="success"} 1
 
+
+# TYPE user_actions_summary gauge
+user_actions_summary{user=67890,status=total} 5
+user_actions_summary{user=67890,status=failed} 2
+user_actions_summary{user=67890,status=success} 3
