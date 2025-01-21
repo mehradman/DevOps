@@ -1,3 +1,5 @@
 - hosts: server1
   roles:
     - role: "prometheus"
+    - role: "traefik"
+    - role: "minio"
