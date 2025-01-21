@@ -1,0 +1,22 @@
+---
+
+- name: Creating a new directory for docker compose file
+  file:
+    path: /root/minio
+    state: directory
+    mode: '0755'
+
+- name: Copy compose config file
+  copy:
+    src: "{{ role_path }}/templates/.env"
+    dest: /root/minio/
+
+- name: Copy Docker Compose file
+  copy:
+    src: "{{ role_path }}/templates/docker-compose.yaml"
+    dest: /root/minio/
+
+- name: Start Docker Compose stack
+  command: docker compose up -d
+  args:
+    chdir: /root/minio
