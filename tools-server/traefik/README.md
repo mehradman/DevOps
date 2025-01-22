@@ -9,16 +9,10 @@ This repository contains a Docker Compose configuration to set up Traefik as a r
 
 ## Getting Started
 
-### 1. Clone the Repository
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
-
-### 2. Create an .env File
+### 1. Create an .env File
 Create an .env file in the root directory and add the following environment variables:
 ```sh
-RESTART_POLICY=always
+RESTART_POLICY=<your-restart-policy>
 HOSTNAME=<your-hostname>
 ACME_EMAIL=<your-email>
 TRA_SUB=<your-traefik-subdomain>
@@ -27,11 +21,11 @@ WEB_AUTH_USER=<your-basic-auth-user>
 WEB_AUTH_PASS=<your-basic-auth-password>
 ```
 
-### 3. Run Docker Compose
+### 2. Run Docker Compose
 Use Docker Compose to start the Traefik service:
 ```bash
 docker-compose up -d
 ```
 
 ## Access Traefik Dashboard
-After starting the services, you can access the Traefik dashboard at `http://<your-traefik-subdomain>.<your-domain>:8080`.
+After starting the services, you can access the Traefik dashboard at `https://<TRA_SUB>.<DOMAIN_ADDRESS>`.
