@@ -57,24 +57,29 @@ To reach the services, use the subdomains configured in your .env file along wit
 ### 1. Sonatype Nexus:
 
 URL: `https://${NEXUS_SUB_DOMAIN}.${DOMAIN_ADDRESS}`
+
 Port: 8081
 
 ### 2. Hub Service:
 
 URL: `https://${HUB_SUB_DOMAIN}.${DOMAIN_ADDRESS}`
+
 Port: 8082
 
 ### 3. Registry Service:
 
 URL: `https://${REGISTRY_SUB_DOMAIN}.${DOMAIN_ADDRESS}`
+
 Port: 8083
 
 ### 4. Quay Service:
 
 URL: `https://${QUAY_SUB_DOMAIN}.${DOMAIN_ADDRESS}`
+
 Port: 8084
 
 ### 5. K8s Service:
 
 URL: `https://${K8S_SUB_DOMAIN}.${DOMAIN_ADDRESS}`
+
 Port: 8085

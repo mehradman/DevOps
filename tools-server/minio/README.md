@@ -24,9 +24,13 @@ RESTART_POLICY=<your-restart-policy>
 docker-compose up -d
 ```
 
-### 3. **Access Minio Console:** Open your browser and go to `https://<MINIO_SUB1>.<DOMAIN_ADDRESS>`
+### 3. **Access Minio Console:** 
 
-### 4. **Access Minio API:** Open your browser and go to `https://<MINIO_SUB2>.<DOMAIN_ADDRESS>`
+Open your browser and go to `https://<MINIO_SUB1>.<DOMAIN_ADDRESS>`
+
+### 4. **Access Minio API:** 
+
+Open your browser and go to `https://<MINIO_SUB2>.<DOMAIN_ADDRESS>`
 
 ## MinIO CLI
 
